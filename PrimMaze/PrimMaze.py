@@ -101,13 +101,14 @@ for x in range(rows_num + 1):#遍历每一列
             map[x][y] = 1#置为墙
 map[random.choice(end_point)[0]][random.choice(end_point)[1]] = 0#从可行的终点列表中随机选一个坐标置为终点
 map[1][0] = 0#把起点置为路
+create_time_end = time.process_time()
 Draw()#绘制
 run_time_end = time.process_time()#运行计时结束
 time_end = time.time()#计时结束
 if if_draw == 'y':#若展示绘制过程
     print('生成并绘制', cols_num, '*', rows_num, '的迷宫共用时', time_end - time_start, 's，其中CPU运行时间', run_time_end - run_time_start, 's')#输出程序运行时间和CPU运行时间
 else:#若不展示绘制过程
-	print('生成', cols_num, '*', rows_num, '的迷宫共用时', time_end - time_start, 's，其中CPU运行时间', run_time_end - run_time_start, 's')#输出程序运行时间和CPU运行时间
+	print('生成并绘制', cols_num, '*', rows_num, '的迷宫共用时', time_end - time_start, 's，其中其中生成时间', create_time_end - run_time_start, 's', 'CPU运行时间', run_time_end - run_time_start, 's')#输出程序运行时间和CPU运行时间
 print('绘制程序运行完毕 正在退出…')#地图绘制部分全部完成
 if_solve = input('是否运行寻路程序？(y/n)')#从输入确认是否解决此迷宫
 if if_solve == 'n':#如果需要
