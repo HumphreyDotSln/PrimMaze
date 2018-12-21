@@ -5,7 +5,7 @@ import random
 import os
 import time
 
-def Draw():#绘制#绘制函数
+def Draw():#绘制函数
 	os.system('cls')#清屏
 	for a in range(rows_num + 1):#纵坐标
 		for b in range(cols_num + 1):#横坐标
