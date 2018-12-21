@@ -5,7 +5,6 @@ import random
 import os
 import time
 
-#一分钟可生成50*10000
 def Draw():#绘制#绘制函数
 	os.system('cls')#清屏
 	for a in range(rows_num + 1):#纵坐标
