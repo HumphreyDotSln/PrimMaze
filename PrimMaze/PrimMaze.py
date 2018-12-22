@@ -13,6 +13,10 @@ def Draw():#绘制函数
 				print('  ', end = '')#绘制俩空格
 			elif map[a][b] == 1:#若此点为墙
 				print('█', end = '')#绘制墙
+			elif map[a][b] == 2:#若此点已探索
+				print('√ ', end = '')#绘制勾
+			elif map[a][b] == 3:#若此点为死路
+				print('× ', end = '')#绘制叉
 		print()#换行
 	return#返回
 cols_num = int(input('列数：'))#从输入获得列数
@@ -21,10 +25,12 @@ if_draw = input('是否展示绘制过程？这可能会花费大量时间(y/n)'
 run_time_start = time.process_time()#开始运行计时
 time_start = time.time()#开始计时
 map = numpy.ones((rows_num + 1, cols_num + 1), int)#用于存储地图的二维数组map#[行][列]
-wall = []#用于存储待处理的墙的数组wall
+wall = []#用于存储待处理的墙的列表wall
 queue = []#wall[index]四周的方块列表
-#0 - - 路
-#1 - - 墙
+#0 -- 路
+#1 -- 墙
+#2 -- 已探索的路
+#3 -- 死路
 map[1][0] = 0#入口
 wall.append([1, 1])#手动设置入口四周的方块
 wall.append([2, 0])#手动设置入口四周的方块
@@ -98,7 +104,9 @@ for x in range(rows_num + 1):#遍历每一列
             end_point.append([x, y + 1])#将他列入可行的终点列表中
         if x == 0 or x == rows_num or y == 0 or y == cols_num:#如果此坐标为边界
             map[x][y] = 1#置为墙
-map[random.choice(end_point)[0]][random.choice(end_point)[1]] = 0#从可行的终点列表中随机选一个坐标置为终点
+x_end_point = random.choice(end_point)[0]#终点横坐标
+y_end_point = random.choice(end_point)[1]#终点纵坐标
+map[x_end_point][y_end_point] = 0#从可行的终点列表中随机选一个坐标置为终点
 map[1][0] = 0#把起点置为路
 create_time_end = time.process_time()
 Draw()#绘制
@@ -113,4 +121,4 @@ if_solve = input('是否运行寻路程序？(y/n)')#从输入确认是否解决
 if if_solve == 'n':#如果需要
     os._exit()#运行寻路程序
 def ReturnMap():#返回map
-	return map#不知道为啥import不能引用到map，所以写一个方法返回过去
+	return map, x_end_point, y_end_point#不知道为啥import不能引用到map，所以写一个方法返回过去
