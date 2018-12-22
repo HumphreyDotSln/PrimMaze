@@ -30,7 +30,8 @@ while len(way) != 0:#当还有未探索的路时
 		print('已完成寻路')#完成
 		run_time_end = time.process_time()#运行计时结束
 		time_end = time.time()#计时结束
-		print('寻路共用时', time_end - time_start, 's，其中CPU运行时间', run_time_end - run_time_start, 's')#输出程序运行时间和CPU运行时间
+		if if_show != 'y':
+			print('寻路共用时', time_end - time_start, 's，其中CPU运行时间', run_time_end - run_time_start, 's')#输出程序运行时间和CPU运行时间
 		break#跳出循环
 	if map[position[0] + 1][position[1]] == 0:#如果当前坐标下方是路
 		position[0] += 1#向下移动
