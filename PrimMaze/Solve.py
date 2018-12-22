@@ -10,6 +10,8 @@ rows_num = PrimMaze.rows_num#获取行数
 cols_num = PrimMaze.cols_num#获取列数
 end_point = [PrimMaze.ReturnMap()[1], PrimMaze.ReturnMap()[2]]#获取终点坐标
 if_show = input('是否展寻路过程？(y/n)')#从输入决定是否展示寻路过程
+if if_show == 'y':
+	sleep_time = 1.01 - float(input('请设置寻路速度(0.1 - 1)'))
 position = [1,0]#将坐标设置在起点
 map = PrimMaze.ReturnMap()[0]#获取地图
 way = []#未探索的路 -- 0
@@ -39,5 +41,5 @@ while len(way) != 0:#当还有未探索的路时
 		position = explored.pop()#回溯一格并从已探索列表中移除
 	if if_show == 'y':#如果要绘制
 		PrimMaze.Draw()#绘制
-		time.sleep(0.1)#休眠0.1s
+		time.sleep(sleep_time)#休眠
 

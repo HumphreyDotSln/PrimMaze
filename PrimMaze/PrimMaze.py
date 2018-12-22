@@ -12,11 +12,11 @@ def Draw():#绘制函数
 			if map[a][b] == 0:#若此点为路
 				print('  ', end = '')#绘制俩空格
 			elif map[a][b] == 1:#若此点为墙
-				print('█', end = '')#绘制墙
+				print('\033[1;34;40m█\033[0m', end = '')#绘制墙
 			elif map[a][b] == 2:#若此点已探索
-				print('√ ', end = '')#绘制勾
+				print('\033[1;31;40m√ \033[0m', end = '')#绘制勾
 			elif map[a][b] == 3:#若此点为死路
-				print('× ', end = '')#绘制叉
+				print('\033[1;32;40m× \033[0m', end = '')#绘制叉
 		print()#换行
 	return#返回
 cols_num = int(input('列数：'))#从输入获得列数
