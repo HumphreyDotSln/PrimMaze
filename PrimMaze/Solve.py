@@ -14,7 +14,7 @@ if if_show == 'y':#如果要绘制寻路过程
 	sleep_time = 1.01 - float(input('请设置寻路速度(0.1 - 1)'))#设置寻路速度
 run_time_start = time.process_time()#开始运行计时
 time_start = time.time()#开始计时
-position = [1,0]#将坐标设置在起点
+position = [PrimMaze.ReturnMap()[3], PrimMaze.ReturnMap()[4]]#将坐标设置在起点
 map = PrimMaze.ReturnMap()[0]#获取地图
 way = []#未探索的路 -- 0
 explored = []#已探索的路 -- 2
@@ -48,5 +48,5 @@ while len(way) != 0:#当还有未探索的路时
 	if if_show == 'y':#如果要绘制
 		PrimMaze.Draw()#绘制
 		time.sleep(sleep_time)#休眠
-input('按任意键退出…')
+input('按Enter键退出…')
 

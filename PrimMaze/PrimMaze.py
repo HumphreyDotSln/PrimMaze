@@ -98,16 +98,21 @@ while len(wall) != 0:#当待处理的墙数目不为0时
 	    pass#直接跳过
 	queue = []#重置wall[index]四周的方块列表
 end_point = []#可行的终点列表
+start_point = []#可行的起点列表
 for x in range(rows_num + 1):#遍历每一列
     for y in range(cols_num + 1):#遍历每一行
         if y == cols_num - 1 and map[x][y - 1] == 0 and map[x][y] == 0:#取一个在最后一列且它和它左边的方块都为路的坐标
             end_point.append([x, y + 1])#将他列入可行的终点列表中
+        if y == 0 and map[x][y + 1] == 0 and map[x][y] == 0:#取一个在第一列且它和它右边的方块都为路的坐标
+            start_point.append([x, y])#将他列入可行的起点列表中
         if x == 0 or x == rows_num or y == 0 or y == cols_num:#如果此坐标为边界
             map[x][y] = 1#置为墙
 x_end_point = random.choice(end_point)[0]#终点横坐标
 y_end_point = random.choice(end_point)[1]#终点纵坐标
 map[x_end_point][y_end_point] = 0#从可行的终点列表中随机选一个坐标置为终点
-map[1][0] = 0#把起点置为路
+x_start_point = random.choice(start_point)[0]#起点横坐标
+y_start_point = random.choice(start_point)[1]#起点纵坐标
+map[x_start_point][y_start_point] = 0#从可行的起点列表中随机选一个坐标置为起点
 create_time_end = time.process_time()
 Draw()#绘制
 run_time_end = time.process_time()#运行计时结束
@@ -121,4 +126,4 @@ if_solve = input('是否运行寻路程序？(y/n)')#从输入确认是否解决
 if if_solve == 'n':#如果需要
     os._exit()#运行寻路程序
 def ReturnMap():#返回map
-	return map, x_end_point, y_end_point#不知道为啥import不能引用到map，所以写一个方法返回过去
+	return map, x_end_point, y_end_point, x_start_point, y_start_point#不知道为啥import不能引用到map，所以写一个方法返回过去
